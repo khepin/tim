@@ -38,7 +38,7 @@ struct timApp: App {
             ContentView()
                 .environmentObject(timerState)
         }
-        .windowLevel(.floating)
+        .windowLevel(timerState.isRunning ? .floating : .normal)
         
         MenuBarExtra {
             EmptyView()
