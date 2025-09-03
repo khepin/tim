@@ -37,8 +37,14 @@ struct timApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(timerState)
+                // choose a fixed size for the window
+                .frame(width: 300, height: 200)
         }
         .windowLevel(timerState.isRunning ? .floating : .normal)
+            // prevent resizing
+        .windowResizability(.contentSize)
+            // put the window on top left corner of the screen by default
+        .defaultPosition(.topLeading)
         
         MenuBarExtra {
             EmptyView()
