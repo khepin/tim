@@ -69,9 +69,11 @@ class TimerState: ObservableObject {
     @Published var seconds = 0
     @Published var isRunning = false
     @Published var inputBuffer = ""
-    
+    let brownNoise = BrownNoiseGenerator()
+
     func reset() {
         isRunning = false
+        brownNoise.stop()
         hours = 0
         minutes = 0
         seconds = 0

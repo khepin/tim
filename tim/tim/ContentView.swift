@@ -91,6 +91,11 @@ struct ContentView: View {
                 Button(action: {
                     timerState.isRunning.toggle()
                     timerState.inputBuffer = ""
+                    if timerState.isRunning {
+                        timerState.brownNoise.start()
+                    } else {
+                        timerState.brownNoise.stop()
+                    }
                 }) {
                     Image(systemName: timerState.isRunning ? "pause.circle.fill" : "play.circle.fill")
                         .resizable()
@@ -128,6 +133,7 @@ struct ContentView: View {
                 timerState.seconds = 59
             } else {
                 timerState.isRunning = false
+                timerState.brownNoise.stop()
                 showNotification()
             }
         }
